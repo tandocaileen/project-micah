@@ -47,8 +47,8 @@ class MainApp extends StatelessWidget {
         routeInformationParser: stackedRouter.defaultRouteParser(),
       ),
     ).animate().fadeIn(
-      delay: const Duration(milliseconds: 50),
-      duration: const Duration(milliseconds: 400),
-    );
+          delay: const Duration(milliseconds: 50),
+          duration: const Duration(milliseconds: 400),
+        );
   }
 }

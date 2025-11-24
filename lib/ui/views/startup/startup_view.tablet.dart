@@ -4,7 +4,7 @@ import 'package:stacked/stacked.dart';
 import 'startup_viewmodel.dart';
 
 class StartupViewTablet extends ViewModelWidget<StartupViewModel> {
-  const StartupViewTablet({Key? key}) : super(key: key);
+  const StartupViewTablet({super.key});
 
   @override
   Widget build(BuildContext context, StartupViewModel viewModel) {

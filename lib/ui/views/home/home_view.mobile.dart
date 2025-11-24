@@ -4,7 +4,7 @@ import 'package:stacked/stacked.dart';
 import 'home_viewmodel.dart';
 
 class HomeViewMobile extends ViewModelWidget<HomeViewModel> {
-  const HomeViewMobile({Key? key}) : super(key: key);
+  const HomeViewMobile({super.key});
 
   @override
   Widget build(BuildContext context, HomeViewModel viewModel) {

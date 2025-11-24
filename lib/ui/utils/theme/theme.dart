@@ -16,7 +16,6 @@ class TAppTheme {
       tertiary: AppColors.tertiary,
       error: AppColors.error,
       surface: AppColors.surface,
-      background: AppColors.background,
     ),
     scaffoldBackgroundColor: AppColors.background,
     appBarTheme: const AppBarTheme(
@@ -98,7 +97,6 @@ class TAppTheme {
       tertiary: AppColors.tertiary,
       error: AppColors.error,
       surface: AppColors.surfaceDark,
-      background: AppColors.backgroundDark,
     ),
     scaffoldBackgroundColor: AppColors.backgroundDark,
     appBarTheme: const AppBarTheme(

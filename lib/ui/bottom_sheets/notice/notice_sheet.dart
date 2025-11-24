@@ -5,8 +5,8 @@ class NoticeSheet extends StatelessWidget {
   final SheetRequest request;
   final Function(SheetResponse) completer;
 
-  const NoticeSheet({Key? key, required this.request, required this.completer})
-    : super(key: key);
+  const NoticeSheet(
+      {super.key, required this.request, required this.completer});
 
   @override
   Widget build(BuildContext context) {

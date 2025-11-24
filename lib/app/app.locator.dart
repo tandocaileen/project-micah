@@ -18,13 +18,11 @@ Future<void> setupLocator({
   String? environment,
   EnvironmentFilter? environmentFilter,
 }) async {
-  // Register environments
+// Register environments
   locator.registerEnvironment(
-    environment: environment,
-    environmentFilter: environmentFilter,
-  );
+      environment: environment, environmentFilter: environmentFilter);
 
-  // Register dependencies
+// Register dependencies
   locator.registerLazySingleton(() => BottomSheetService());
   locator.registerLazySingleton(() => DialogService());
   locator.registerLazySingleton(() => NavigationService());
