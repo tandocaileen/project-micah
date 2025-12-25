@@ -195,24 +195,108 @@ class DetailsViewModel extends BaseViewModel {
   };
 
   // Full assembly model paths
+
   final String assembleModelPath =
-      'assets/sample_3d_object/tripo_convert_36cdd4a4-d861-4834-acdf-ce8a7d82f620.obj';
+      'assets/sample_3d_object/manual_breaking/blt150_01.obj';
   final String assembleMtlPath =
-      'assets/sample_3d_object/tripo_convert_36cdd4a4-d861-4834-acdf-ce8a7d82f620.mtl';
+      'assets/sample_3d_object/manual_breaking/blt150_01.mtl';
+
+  // ================================================================================================================
+
+  // final String assembleModelPath = 'assets/sample_3d_object/blt150_01.obj';
+  // final String assembleMtlPath = 'assets/sample_3d_object/blt150_01.mtl';
+
+  // ================================================================================================================
+
+  // final String assembleModelPath =
+  //     'assets/sample_3d_object/tripo_convert_36cdd4a4-d861-4834-acdf-ce8a7d82f620.obj';
+  // final String assembleMtlPath =
+  //     'assets/sample_3d_object/tripo_convert_36cdd4a4-d861-4834-acdf-ce8a7d82f620.mtl';
 
   // Parts models mapping. Keys should match part names used in the UI
   // Some parts may not have an associated .mtl (empty string)
   final Map<String, Map<String, String>> partsModels = {
-    'Rear Shock': {
+    '02': {
       'displayName': 'Rear Shock Absorber',
-      'obj': 'assets/sample_3d_object/blt150_rearShockAbsorber_final_00.obj',
-      'mtl': 'assets/sample_3d_object/blt150_rearShockAbsorber_final_00.mtl',
+      'obj': 'assets/sample_3d_object/manual_breaking/blt150_02.obj',
+      'mtl': 'assets/sample_3d_object/manual_breaking/blt150_02.mtl',
     },
-    'Clutch': {
-      'displayName': 'Clutch Shoe',
-      'obj': 'assets/sample_3d_object/clutch shoe final_fixed.obj',
-      'mtl': '',
+    '03': {
+      'displayName': 'Rear Shock Absorber',
+      'obj': 'assets/sample_3d_object/manual_breaking/blt150_03.obj',
+      'mtl': 'assets/sample_3d_object/manual_breaking/blt150_03.mtl',
     },
+    '04': {
+      'displayName': 'Rear Shock Absorber',
+      'obj': 'assets/sample_3d_object/manual_breaking/blt150_04.obj',
+      'mtl': 'assets/sample_3d_object/manual_breaking/blt150_04.mtl',
+    },
+    '05': {
+      'displayName': 'Rear Shock Absorber',
+      'obj': 'assets/sample_3d_object/manual_breaking/blt150_05.obj',
+      'mtl': 'assets/sample_3d_object/manual_breaking/blt150_05.mtl',
+    },
+    '06': {
+      'displayName': 'Rear Shock Absorber',
+      'obj': 'assets/sample_3d_object/manual_breaking/blt150_06.obj',
+      'mtl': 'assets/sample_3d_object/manual_breaking/blt150_06.mtl',
+    },
+    '07': {
+      'displayName': 'Rear Shock Absorber',
+      'obj': 'assets/sample_3d_object/manual_breaking/blt150_07.obj',
+      'mtl': 'assets/sample_3d_object/manual_breaking/blt150_07.mtl',
+    },
+    '08': {
+      'displayName': 'Rear Shock Absorber',
+      'obj': 'assets/sample_3d_object/manual_breaking/blt150_08.obj',
+      'mtl': 'assets/sample_3d_object/manual_breaking/blt150_08.mtl',
+    },
+    '09': {
+      'displayName': 'Rear Shock Absorber',
+      'obj': 'assets/sample_3d_object/manual_breaking/blt150_09.obj',
+      'mtl': 'assets/sample_3d_object/manual_breaking/blt150_09.mtl',
+    },
+    '10': {
+      'displayName': 'Rear Shock Absorber',
+      'obj': 'assets/sample_3d_object/manual_breaking/blt150_10.obj',
+      'mtl': 'assets/sample_3d_object/manual_breaking/blt150_10.mtl',
+    },
+    '11': {
+      'displayName': 'Rear Shock Absorber',
+      'obj': 'assets/sample_3d_object/manual_breaking/blt150_11.obj',
+      'mtl': 'assets/sample_3d_object/manual_breaking/blt150_11.mtl',
+    },
+
+    // ================================================================================================================
+
+    // 'Rear Shock': {
+    //   'displayName': 'Rear Shock Absorber',
+    //   'obj': 'assets/sample_3d_object/shock_absorber_01.obj',
+    //   'mtl': 'assets/sample_3d_object/shock_absorber_01.mtl',
+    // },
+    // 'Rear Shock ': {
+    //   'displayName': 'Rear Shock Absorber',
+    //   'obj': 'assets/sample_3d_object/shock_absorber_02.obj',
+    //   'mtl': 'assets/sample_3d_object/shock_absorber_02.mtl',
+    // },
+    // 'Clutch': {
+    //   'displayName': 'Clutch Shoe',
+    //   'obj': 'assets/sample_3d_object/clutch shoe final_fixed.obj',
+    //   'mtl': '',
+    // },
+
+    // ================================================================================================================
+
+    // 'Rear Shock': {
+    //   'displayName': 'Rear Shock Absorber',
+    //   'obj': 'assets/sample_3d_object/blt150_rearShockAbsorber_final_00.obj',
+    //   'mtl': 'assets/sample_3d_object/blt150_rearShockAbsorber_final_00.mtl',
+    // },
+    // 'Clutch': {
+    //   'displayName': 'Clutch Shoe',
+    //   'obj': 'assets/sample_3d_object/clutch shoe final_fixed.obj',
+    //   'mtl': '',
+    // },
     // Add more part -> model mappings here as needed
   };
 
@@ -261,6 +345,21 @@ class DetailsViewModel extends BaseViewModel {
         .toList(growable: false);
   }
 
+  // Get all assembly model paths (for preloading)
+  List<String> get allAssemblyModelPaths => [assembleModelPath];
+
+  // Get all assembly MTL paths
+  List<String?> get allAssemblyMtlPaths => [assembleMtlPath];
+
+  // Get all disassembly model paths (for preloading)
+  List<String> get allDisassemblyModelPaths =>
+      partsModels.values.map((m) => m['obj']!).toList(growable: false);
+
+  // Get all disassembly MTL paths
+  List<String?> get allDisassemblyMtlPaths => partsModels.values
+      .map((m) => (m['mtl'] != null && m['mtl']!.isNotEmpty) ? m['mtl'] : null)
+      .toList(growable: false);
+
   // Getters for current part details (used in UI)
   String get partsLabel => currentPartData['label'] as String;
   String get partsImageUrl => currentPartData['imageUrl'] as String;
@@ -278,10 +377,9 @@ class DetailsViewModel extends BaseViewModel {
     _selectedPart = null; // Reset selected part when toggling
     notifyListeners();
 
-    // Simulate API call
-    setBusy(true);
-    await Future.delayed(const Duration(milliseconds: 800));
-    setBusy(false);
+    // NO LONGER NEEDED: The 3D viewer now preloads both modes
+    // Models are already loaded, just toggling visibility
+    // No simulated API call needed anymore
   }
 
   // Select a motorcycle from the categories list

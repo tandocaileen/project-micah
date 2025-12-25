@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
 class ThreeDViewer extends StatelessWidget {
-  final List<String> modelPaths;
-  final List<String?>? mtlPaths;
+  final List<String> assemblyModelPaths;
+  final List<String?>? assemblyMtlPaths;
+  final List<String> disassemblyModelPaths;
+  final List<String?>? disassemblyMtlPaths;
   final String modelName;
   final double height;
   final bool isAssembleMode;
@@ -11,8 +13,10 @@ class ThreeDViewer extends StatelessWidget {
 
   const ThreeDViewer({
     super.key,
-    required this.modelPaths,
-    this.mtlPaths,
+    required this.assemblyModelPaths,
+    this.assemblyMtlPaths,
+    required this.disassemblyModelPaths,
+    this.disassemblyMtlPaths,
     required this.modelName,
     this.height = 420,
     this.isAssembleMode = true,
@@ -22,6 +26,8 @@ class ThreeDViewer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final totalModels =
+        assemblyModelPaths.length + disassemblyModelPaths.length;
     return SizedBox(
       height: height,
       width: double.infinity,
@@ -32,7 +38,7 @@ class ThreeDViewer extends StatelessWidget {
             Icon(Icons.threed_rotation, size: 48, color: Colors.grey[600]),
             const SizedBox(height: 8),
             Text(
-                '${modelPaths.length} model(s) - 3D viewer is only available on web'),
+                '$totalModels model(s) preloaded - 3D viewer is only available on web'),
           ],
         ),
       ),

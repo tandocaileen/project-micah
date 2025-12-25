@@ -63,8 +63,11 @@ class DetailsViewTablet extends ViewModelWidget<DetailsViewModel> {
                       children: [
                         // 3D Viewer with integrated toggle buttons
                         ThreeDViewer(
-                          modelPaths: viewModel.currentModelPaths,
-                          mtlPaths: viewModel.currentMtlPaths,
+                          assemblyModelPaths: viewModel.allAssemblyModelPaths,
+                          assemblyMtlPaths: viewModel.allAssemblyMtlPaths,
+                          disassemblyModelPaths:
+                              viewModel.allDisassemblyModelPaths,
+                          disassemblyMtlPaths: viewModel.allDisassemblyMtlPaths,
                           modelName: viewModel.isAssembleMode
                               ? '${viewModel.selectedMotorcycle} - Full Assembly'
                               : '${viewModel.selectedMotorcycle} - ${viewModel.selectedPart ?? "Parts View"}',

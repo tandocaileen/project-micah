@@ -9,14 +9,18 @@ import 'package:flutter/material.dart';
 import 'package:project_micah/ui/utils/constants/app_colors.dart';
 
 class ThreeDViewer extends StatefulWidget {
-  /// Accepts one or more model OBJ paths. For assemble mode this will usually
-  /// be a single full-assembly model. For disassemble it can be multiple part
-  /// models displayed together.
-  final List<String> modelPaths;
+  /// Assembly model paths (for assemble mode)
+  final List<String> assemblyModelPaths;
 
-  /// Optional matching list of MTL paths aligned with [modelPaths]. Use null or
-  /// empty string for entries without an MTL.
-  final List<String?>? mtlPaths;
+  /// Assembly MTL paths aligned with assemblyModelPaths
+  final List<String?>? assemblyMtlPaths;
+
+  /// Disassembly model paths (for disassemble mode)
+  final List<String> disassemblyModelPaths;
+
+  /// Disassembly MTL paths aligned with disassemblyModelPaths
+  final List<String?>? disassemblyMtlPaths;
+
   final String modelName;
   final double height;
   final bool isAssembleMode;
@@ -29,8 +33,10 @@ class ThreeDViewer extends StatefulWidget {
 
   const ThreeDViewer({
     super.key,
-    required this.modelPaths,
-    this.mtlPaths,
+    required this.assemblyModelPaths,
+    this.assemblyMtlPaths,
+    required this.disassemblyModelPaths,
+    this.disassemblyMtlPaths,
     required this.modelName,
     this.height = 420,
     this.isAssembleMode = true,
@@ -44,16 +50,14 @@ class ThreeDViewer extends StatefulWidget {
 
 class _ThreeDViewerState extends State<ThreeDViewer> {
   late String viewType;
-  String? currentModelPath;
-  String? currentMtlPath;
   StreamSubscription<html.MessageEvent>? _messageSub;
+  html.IFrameElement? _iframe;
 
   @override
   void initState() {
     super.initState();
     _registerViewer();
     // Listen for postMessage events from the iframe (Three.js viewer).
-    // Expect payloads like: { type: 'partClick', model: '<path>' }
     _messageSub = html.window.onMessage.listen((html.MessageEvent event) {
       try {
         final dynamic data = event.data;
@@ -85,35 +89,68 @@ class _ThreeDViewerState extends State<ThreeDViewer> {
   @override
   void didUpdateWidget(ThreeDViewer oldWidget) {
     super.didUpdateWidget(oldWidget);
-    // Re-register viewer if model paths changed
-    final oldModels = oldWidget.modelPaths.join('|');
-    final newModels = widget.modelPaths.join('|');
-    final oldMtls = (oldWidget.mtlPaths ?? []).join('|');
-    final newMtls = (widget.mtlPaths ?? []).join('|');
-    if (oldModels != newModels || oldMtls != newMtls) {
+
+    // If mode changed, send toggle message instead of recreating iframe
+    if (oldWidget.isAssembleMode != widget.isAssembleMode) {
+      _sendToggleModeMessage();
+    }
+
+    // Only re-register if model paths actually changed (e.g., motorcycle changed)
+    final oldAssembly = oldWidget.assemblyModelPaths.join('|');
+    final newAssembly = widget.assemblyModelPaths.join('|');
+    final oldDisassembly = oldWidget.disassemblyModelPaths.join('|');
+    final newDisassembly = widget.disassemblyModelPaths.join('|');
+
+    if (oldAssembly != newAssembly || oldDisassembly != newDisassembly) {
       debugPrint('🎨 Model paths changed! Re-registering viewer...');
       _registerViewer();
     }
   }
 
+  void _sendToggleModeMessage() {
+    final mode = widget.isAssembleMode ? 'assemble' : 'disassemble';
+    final message = {'type': 'toggleMode', 'mode': mode};
+
+    // Send message to iframe
+    if (_iframe != null) {
+      _iframe!.contentWindow?.postMessage(message, '*');
+      debugPrint('three_d_viewer: Sent toggle message: $mode');
+    }
+  }
+
   void _registerViewer() {
-    // Keep a reference to the first model for legacy usages/debugging
-    currentModelPath =
-        widget.modelPaths.isNotEmpty ? widget.modelPaths.first : null;
-    currentMtlPath = (widget.mtlPaths != null && widget.mtlPaths!.isNotEmpty)
-        ? widget.mtlPaths!.first
-        : null;
     viewType = 'three-d-viewer-${DateTime.now().microsecondsSinceEpoch}';
 
-    // Build a comma-separated list of encoded model paths and optional mtls
-    final encodedModels = widget.modelPaths.map(Uri.encodeComponent).join(',');
-    String src = 'three_viewer_obj.html?models=$encodedModels';
-    if (widget.mtlPaths != null && widget.mtlPaths!.isNotEmpty) {
-      final encodedMtls = widget.mtlPaths!
+    // Build query params for both assembly and disassembly models
+    final assemblyEncoded =
+        widget.assemblyModelPaths.map(Uri.encodeComponent).join(',');
+    final disassemblyEncoded =
+        widget.disassemblyModelPaths.map(Uri.encodeComponent).join(',');
+
+    String src =
+        'three_viewer_obj.html?assemblyModels=$assemblyEncoded&disassemblyModels=$disassemblyEncoded';
+
+    // Add assembly MTLs if provided
+    if (widget.assemblyMtlPaths != null &&
+        widget.assemblyMtlPaths!.isNotEmpty) {
+      final assemblyMtlsEncoded = widget.assemblyMtlPaths!
           .map((m) => m != null && m.isNotEmpty ? Uri.encodeComponent(m) : '')
           .join(',');
-      src = '$src&mtls=$encodedMtls';
+      src = '$src&assemblyMtls=$assemblyMtlsEncoded';
     }
+
+    // Add disassembly MTLs if provided
+    if (widget.disassemblyMtlPaths != null &&
+        widget.disassemblyMtlPaths!.isNotEmpty) {
+      final disassemblyMtlsEncoded = widget.disassemblyMtlPaths!
+          .map((m) => m != null && m.isNotEmpty ? Uri.encodeComponent(m) : '')
+          .join(',');
+      src = '$src&disassemblyMtls=$disassemblyMtlsEncoded';
+    }
+
+    // Set initial mode
+    final initialMode = widget.isAssembleMode ? 'assemble' : 'disassemble';
+    src = '$src&mode=$initialMode';
 
     ui_web.platformViewRegistry.registerViewFactory(viewType, (int viewId) {
       final element = html.DivElement()
@@ -121,16 +158,16 @@ class _ThreeDViewerState extends State<ThreeDViewer> {
         ..style.height = '100%'
         ..style.backgroundColor = 'transparent';
 
-      final iframe = html.IFrameElement()
+      _iframe = html.IFrameElement()
         ..style.width = '100%'
         ..style.height = '100%'
         ..style.border = 'none'
         ..style.backgroundColor = 'transparent'
         ..style.pointerEvents = 'auto' // Allow interaction with 3D model
         ..src = src;
-      iframe.setAttribute('allowTransparency', 'true');
+      _iframe!.setAttribute('allowTransparency', 'true');
 
-      element.append(iframe);
+      element.append(_iframe!);
       return element;
     });
   }
@@ -138,6 +175,7 @@ class _ThreeDViewerState extends State<ThreeDViewer> {
   @override
   void dispose() {
     _messageSub?.cancel();
+    _iframe = null;
     super.dispose();
   }
 
