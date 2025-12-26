@@ -140,61 +140,134 @@ class DetailsViewModel extends BaseViewModel {
   // Parts data (displayed when a specific part is selected in disassemble mode)
   Map<String, dynamic> get currentPartData {
     if (_selectedPart == null) {
-      // Default to clutch
-      return _partsDatabase['Clutch']!;
+      // Default to first part (Right Side Mirror)
+      return _partsDatabase['Right Side Mirror']!;
     }
-    return _partsDatabase[_selectedPart] ?? _partsDatabase['Clutch']!;
+    return _partsDatabase[_selectedPart] ??
+        _partsDatabase['Right Side Mirror']!;
   }
 
   // Simulated parts database
   final Map<String, Map<String, dynamic>> _partsDatabase = {
-    'Clutch': {
-      'label': 'CLUTCH',
+    'Right Side Mirror': {
+      'label': 'RIGHT SIDE MIRROR',
       'imageUrl': 'assets/images/banner_decoration.png',
-      'name': 'LOCATING PLATE',
-      'sku': 'FW5119482155',
-      'category': 'GEAR',
-      'groupNo': 'E-08',
-      'partNo': '2235L',
+      'name': 'SIDE MIRROR ASSEMBLY',
+      'sku': 'RSM2341982155',
+      'category': 'ACCESSORY',
+      'groupNo': 'A-02',
+      'partNo': '1102R',
       'quantity': 1,
       'description':
-          'Smooth wheel rotation and reduce friction for a stable, efficient ride. Built with high-quality steel, these bearings are designed to handle heavy loads and high speeds. They provide durability against heat, dust, and road impact.',
+          'High-visibility convex mirror providing wide-angle rear view for enhanced safety. Features adjustable mounting bracket with anti-vibration design. Durable glass lens with protective housing resistant to weather and road debris.',
+    },
+    'Left Side Mirror': {
+      'label': 'LEFT SIDE MIRROR',
+      'imageUrl': 'assets/images/banner_decoration.png',
+      'name': 'SIDE MIRROR ASSEMBLY',
+      'sku': 'LSM2341982156',
+      'category': 'ACCESSORY',
+      'groupNo': 'A-03',
+      'partNo': '1103L',
+      'quantity': 1,
+      'description':
+          'High-visibility convex mirror providing wide-angle rear view for enhanced safety. Features adjustable mounting bracket with anti-vibration design. Durable glass lens with protective housing resistant to weather and road debris.',
+    },
+    'Handle Bar': {
+      'label': 'HANDLE BAR',
+      'imageUrl': 'assets/images/banner_decoration.png',
+      'name': 'STEERING HANDLEBAR',
+      'sku': 'HB6541982341',
+      'category': 'STEERING',
+      'groupNo': 'S-04',
+      'partNo': '2204H',
+      'quantity': 1,
+      'description':
+          'Ergonomically designed handlebar providing optimal control and rider comfort. Made from high-strength steel tubing with chrome finish. Features pre-drilled mounting points for controls, grips, and accessories.',
+    },
+    'Front Frame': {
+      'label': 'FRONT FRAME',
+      'imageUrl': 'assets/images/banner_decoration.png',
+      'name': 'MAIN FRAME ASSEMBLY',
+      'sku': 'FF4412365478',
+      'category': 'FRAME',
+      'groupNo': 'F-05',
+      'partNo': '3305F',
+      'quantity': 1,
+      'description':
+          'Heavy-duty front frame structure providing structural integrity and component mounting. Engineered with reinforced welded joints for maximum strength and impact resistance. Powder-coated finish for corrosion protection.',
+    },
+    'Back Frame': {
+      'label': 'BACK FRAME',
+      'imageUrl': 'assets/images/banner_decoration.png',
+      'name': 'REAR FRAME ASSEMBLY',
+      'sku': 'BF8821445566',
+      'category': 'FRAME',
+      'groupNo': 'F-06',
+      'partNo': '3306B',
+      'quantity': 1,
+      'description':
+          'Rear frame assembly supporting seat, rear wheel, and suspension components. Features integrated mounting points for exhaust system and passenger footpegs. Robust construction ensures rider safety and load-bearing capacity.',
     },
     'Front Wheel': {
       'label': 'FRONT WHEEL',
       'imageUrl': 'assets/images/banner_decoration.png',
-      'name': 'WHEEL BEARING',
+      'name': 'FRONT WHEEL ASSEMBLY',
       'sku': 'FW6541982341',
       'category': 'WHEEL',
-      'groupNo': 'F-12',
-      'partNo': '3456W',
-      'quantity': 2,
-      'description':
-          'High-performance wheel bearing ensuring smooth rotation and minimal friction. Engineered for durability and long service life under various road conditions.',
-    },
-    'Rear Brake': {
-      'label': 'REAR BRAKE',
-      'imageUrl': 'assets/images/banner_decoration.png',
-      'name': 'BRAKE SHOE',
-      'sku': 'RB4412365478',
-      'category': 'BRAKE',
-      'groupNo': 'B-05',
-      'partNo': '7821B',
-      'quantity': 2,
-      'description':
-          'Premium brake shoe designed for optimal stopping power and safety. Made with heat-resistant composite materials for consistent performance.',
-    },
-    'Magneto': {
-      'label': 'MAGNETO',
-      'imageUrl': 'assets/images/banner_decoration.png',
-      'name': 'IGNITION COIL',
-      'sku': 'MG8821445566',
-      'category': 'ELECTRICAL',
-      'groupNo': 'E-03',
-      'partNo': '5512M',
+      'groupNo': 'W-07',
+      'partNo': '4407W',
       'quantity': 1,
       'description':
-          'High-quality ignition coil that generates the spark needed to ignite the fuel mixture. Built to withstand extreme temperatures and vibrations.',
+          'Complete front wheel assembly with tire, rim, and bearings. Precision-balanced for smooth rotation and reduced vibration. High-quality wheel bearings ensure minimal friction and long service life under various road conditions.',
+    },
+    'Rear Fender': {
+      'label': 'REAR FENDER',
+      'imageUrl': 'assets/images/banner_decoration.png',
+      'name': 'REAR MUDGUARD',
+      'sku': 'RF5119482155',
+      'category': 'BODY',
+      'groupNo': 'B-08',
+      'partNo': '5508R',
+      'quantity': 1,
+      'description':
+          'Protective rear fender preventing mud and water spray from rear wheel. Made from durable plastic composite material with UV-resistant finish. Includes integrated mounting brackets and tail light housing.',
+    },
+    'Exhaust Pipe': {
+      'label': 'EXHAUST PIPE',
+      'imageUrl': 'assets/images/banner_decoration.png',
+      'name': 'EXHAUST SYSTEM',
+      'sku': 'EP7721445566',
+      'category': 'ENGINE',
+      'groupNo': 'E-09',
+      'partNo': '6609E',
+      'quantity': 1,
+      'description':
+          'Complete exhaust system channeling engine gases away from the engine. Features heat-resistant chrome-plated steel construction with integrated muffler for noise reduction. Optimized for efficient exhaust flow and reduced emissions.',
+    },
+    'Rear Wheel': {
+      'label': 'REAR WHEEL',
+      'imageUrl': 'assets/images/banner_decoration.png',
+      'name': 'REAR WHEEL ASSEMBLY',
+      'sku': 'RW4412365478',
+      'category': 'WHEEL',
+      'groupNo': 'W-10',
+      'partNo': '4410R',
+      'quantity': 1,
+      'description':
+          'Rear wheel assembly with tire, rim, sprocket, and brake drum. Heavy-duty construction designed to handle torque transfer and braking forces. Precision-balanced with sealed bearings for smooth operation and extended durability.',
+    },
+    'Rear Shock Absorber': {
+      'label': 'REAR SHOCK ABSORBER',
+      'imageUrl': 'assets/images/banner_decoration.png',
+      'name': 'REAR SUSPENSION UNIT',
+      'sku': 'RSA8821445566',
+      'category': 'SUSPENSION',
+      'groupNo': 'S-11',
+      'partNo': '7711S',
+      'quantity': 2,
+      'description':
+          'Hydraulic shock absorber providing smooth ride quality and stability. Features adjustable spring preload for different load conditions. Oil-filled damper system absorbs road impacts and maintains tire contact for optimal handling.',
     },
   };
 
