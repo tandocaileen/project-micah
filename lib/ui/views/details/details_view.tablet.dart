@@ -178,7 +178,7 @@ class DetailsViewTablet extends ViewModelWidget<DetailsViewModel> {
                                   ],
                                 ),
                               ),
-                              // 3D Controls container
+                              // 3D Controls container (scrollable)
                               Container(
                                 padding: const EdgeInsets.fromLTRB(
                                   UIHelpers.spacing12,
@@ -186,76 +186,81 @@ class DetailsViewTablet extends ViewModelWidget<DetailsViewModel> {
                                   UIHelpers.spacing12,
                                   UIHelpers.spacing8,
                                 ),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    ToggleButton(
-                                      isAssembleMode: viewModel.isAssembleMode,
-                                      isEnabled: viewModel.has3DModel,
-                                      onToggle: () => viewModel.toggleMode(
-                                          !viewModel.isAssembleMode),
-                                    ),
-                                    if (!viewModel.isAssembleMode) ...[
-                                      UIHelpers.horizontalSpace16,
-                                      Text(
-                                        'Parts Distance:',
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodySmall
-                                            ?.copyWith(
-                                              color: AppColors.textSecondary,
-                                              fontWeight: FontWeight.w500,
-                                            ),
+                                child: SingleChildScrollView(
+                                  scrollDirection: Axis.horizontal,
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      ToggleButton(
+                                        isAssembleMode:
+                                            viewModel.isAssembleMode,
+                                        isEnabled: viewModel.has3DModel,
+                                        onToggle: () => viewModel.toggleMode(
+                                            !viewModel.isAssembleMode),
                                       ),
-                                      UIHelpers.horizontalSpace8,
-                                      SizedBox(
-                                        width: 150,
-                                        child: Slider(
-                                          value: viewModel.partDistance,
-                                          min: 0.0,
-                                          max: 20.0,
-                                          divisions: 100,
-                                          label: viewModel.partDistance
-                                              .toStringAsFixed(1),
-                                          onChanged: (value) => viewModel
-                                              .updatePartDistance(value),
-                                        ),
-                                      ),
-                                      UIHelpers.horizontalSpace8,
-                                      SizedBox(
-                                        width: 30,
-                                        child: Text(
-                                          viewModel.partDistance
-                                              .toStringAsFixed(1),
+                                      if (!viewModel.isAssembleMode) ...[
+                                        UIHelpers.horizontalSpace16,
+                                        Text(
+                                          'Parts Distance:',
                                           style: Theme.of(context)
                                               .textTheme
                                               .bodySmall
                                               ?.copyWith(
                                                 color: AppColors.textSecondary,
-                                                fontWeight: FontWeight.bold,
+                                                fontWeight: FontWeight.w500,
                                               ),
                                         ),
+                                        UIHelpers.horizontalSpace8,
+                                        SizedBox(
+                                          width: 150,
+                                          child: Slider(
+                                            value: viewModel.partDistance,
+                                            min: 0.0,
+                                            max: 20.0,
+                                            divisions: 100,
+                                            label: viewModel.partDistance
+                                                .toStringAsFixed(1),
+                                            onChanged: (value) => viewModel
+                                                .updatePartDistance(value),
+                                          ),
+                                        ),
+                                        UIHelpers.horizontalSpace8,
+                                        SizedBox(
+                                          width: 30,
+                                          child: Text(
+                                            viewModel.partDistance
+                                                .toStringAsFixed(1),
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodySmall
+                                                ?.copyWith(
+                                                  color:
+                                                      AppColors.textSecondary,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                          ),
+                                        ),
+                                      ],
+                                      UIHelpers.horizontalSpace24,
+                                      const ControlItem(
+                                        icon: Icons.mouse,
+                                        label: 'Drag',
+                                        action: 'Rotate',
+                                      ),
+                                      UIHelpers.horizontalSpace12,
+                                      const ControlItem(
+                                        icon: Icons.zoom_in,
+                                        label: 'Scroll',
+                                        action: 'Zoom',
+                                      ),
+                                      UIHelpers.horizontalSpace12,
+                                      const ControlItem(
+                                        icon: Icons.refresh,
+                                        label: 'R',
+                                        action: 'Reset',
                                       ),
                                     ],
-                                    UIHelpers.horizontalSpace24,
-                                    const ControlItem(
-                                      icon: Icons.mouse,
-                                      label: 'Drag',
-                                      action: 'Rotate',
-                                    ),
-                                    UIHelpers.horizontalSpace12,
-                                    const ControlItem(
-                                      icon: Icons.zoom_in,
-                                      label: 'Scroll',
-                                      action: 'Zoom',
-                                    ),
-                                    UIHelpers.horizontalSpace12,
-                                    const ControlItem(
-                                      icon: Icons.refresh,
-                                      label: 'R',
-                                      action: 'Reset',
-                                    ),
-                                  ],
+                                  ),
                                 ),
                               ),
                             ],
@@ -280,7 +285,7 @@ class DetailsViewTablet extends ViewModelWidget<DetailsViewModel> {
                                 viewModel.isRightSidebarVisible
                                     ? Icons.chevron_right
                                     : Icons.chevron_left,
-                                color: Colors.white,
+                                color: AppColors.borderDark,
                                 size: 20,
                               ),
                             ),

@@ -2,7 +2,7 @@
     "motorcycles": [
         {
             "name": "BLT150",
-            "imageUrl": "assets/images/sample_mcs/thumbnail-mc1.png",
+            "imageUrl": "assets/images/sample_mcs/blt150.png",
             "has3DModel": true,
             "engineSpecs": [
                 "Exhaust Pipe"
@@ -163,7 +163,7 @@
         },
         {
             "name": "Blink 124",
-            "imageUrl": "assets/images/sample_mcs/thumbnail-mc2.png",
+            "imageUrl": "assets/images/sample_mcs/thumbnail-mc1.png",
             "has3DModel": true,
             "engineSpecs": [
                 "Cylinder Block & Cylinder Head",

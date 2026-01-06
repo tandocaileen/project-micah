@@ -153,7 +153,7 @@ class _MotorcycleCardState extends State<_MotorcycleCard> {
                   if (!widget.motorcycle.has3DModel) ...[
                     UIHelpers.verticalSpace4,
                     Text(
-                      '3D Model Coming Soon!',
+                      '3D Explosion Soon!',
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
                             fontStyle: FontStyle.italic,
                             color: AppColors.warning,

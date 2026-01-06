@@ -205,6 +205,9 @@ class DetailsViewModel extends BaseViewModel {
     if (isAssemble) {
       _selectedPart = null;
       _isRightSidebarVisible = false;
+    } else {
+      // Reset explosion distance to 2 when switching to disassemble mode
+      _partDistance = 2;
     }
 
     notifyListeners();

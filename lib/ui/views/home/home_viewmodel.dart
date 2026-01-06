@@ -42,7 +42,7 @@ class HomeViewModel extends BaseViewModel {
   List<MotorcycleBigCard> get featuredMotorcycles => [
         MotorcycleBigCard(
           title: 'BLT150',
-          imagePath: 'assets/images/sample_mcs/home-select-mc-1.png',
+          imagePath: 'assets/images/sample_mcs/blt150.png',
           onTap: () => _routerService.navigateToDetailsView(),
           isEnabled: true,
         ),
