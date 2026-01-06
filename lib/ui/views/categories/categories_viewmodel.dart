@@ -12,27 +12,27 @@ class CategoriesViewModel extends BaseViewModel {
   final List<CategoryModel> categories = [
     CategoryModel(
       name: 'Brake',
-      imageUrl: 'images/sample_parts/home-categories-1.png',
+      imageUrl: 'assets/images/sample_parts/home-categories-1.png',
     ),
     CategoryModel(
       name: 'Clutch',
-      imageUrl: 'images/sample_parts/home-categories-2.png',
+      imageUrl: 'assets/images/sample_parts/home-categories-2.png',
     ),
     CategoryModel(
       name: 'Gearshift',
-      imageUrl: 'images/sample_parts/home-categories-3.png',
+      imageUrl: 'assets/images/sample_parts/home-categories-3.png',
     ),
     CategoryModel(
       name: 'Magneto',
-      imageUrl: 'images/sample_parts/home-categories-4.png',
+      imageUrl: 'assets/images/sample_parts/home-categories-4.png',
     ),
     CategoryModel(
       name: 'Oil Pump',
-      imageUrl: 'images/sample_parts/home-categories-5.png',
+      imageUrl: 'assets/images/sample_parts/home-categories-5.png',
     ),
     CategoryModel(
       name: 'Transmission Device',
-      imageUrl: 'images/sample_parts/home-categories-6.png',
+      imageUrl: 'assets/images/sample_parts/home-categories-6.png',
     ),
   ];
 
@@ -48,12 +48,12 @@ class CategoriesViewModel extends BaseViewModel {
 
     //mock
     final partImages = [
-      'images/sample_parts/related-parts-1.png',
-      'images/sample_parts/related-parts-2.png',
-      'images/sample_parts/related-parts-3.png',
-      'images/sample_parts/related-parts-4.png',
-      'images/sample_parts/related-parts-5.png',
-      'images/sample_parts/related-parts-6.png',
+      'assets/images/sample_parts/related-parts-1.png',
+      'assets/images/sample_parts/related-parts-2.png',
+      'assets/images/sample_parts/related-parts-3.png',
+      'assets/images/sample_parts/related-parts-4.png',
+      'assets/images/sample_parts/related-parts-5.png',
+      'assets/images/sample_parts/related-parts-6.png',
     ];
 
     categoryParts = List.generate(6, (index) {

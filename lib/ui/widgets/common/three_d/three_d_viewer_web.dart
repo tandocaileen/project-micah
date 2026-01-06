@@ -6,6 +6,7 @@ import 'dart:html' as html;
 import 'dart:ui_web' as ui_web;
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:project_micah/ui/utils/constants/app_colors.dart';
 
 class ThreeDViewer extends StatefulWidget {
@@ -137,6 +138,16 @@ class _ThreeDViewerState extends State<ThreeDViewer> {
     }
   }
 
+  void _sendResetCameraMessage() {
+    final message = {'type': 'resetCamera'};
+
+    // Send message to iframe
+    if (_iframe != null) {
+      _iframe!.contentWindow?.postMessage(message, '*');
+      debugPrint('three_d_viewer: Sent reset camera command');
+    }
+  }
+
   void _registerViewer() {
     viewType = 'three-d-viewer-${DateTime.now().microsecondsSinceEpoch}';
 
@@ -203,48 +214,60 @@ class _ThreeDViewerState extends State<ThreeDViewer> {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: widget.height,
-      width: double.infinity,
-      child: Stack(
-        fit: StackFit.expand,
-        children: [
-          Container(color: AppColors.surface),
+    return Focus(
+      autofocus: true,
+      onKeyEvent: (node, event) {
+        if (event is KeyDownEvent &&
+            (event.logicalKey == LogicalKeyboardKey.keyR)) {
+          _sendResetCameraMessage();
+          return KeyEventResult.handled;
+        }
+        return KeyEventResult.ignored;
+      },
+      child: SizedBox(
+        height: widget.height,
+        width: double.infinity,
+        child: Stack(
+          fit: StackFit.expand,
+          children: [
+            Container(color: AppColors.surface),
 
-          // overlay image
-          Positioned.fill(
-            child: Image.asset(
-              'assets/images/overlay.jpg',
-              fit: BoxFit.fill,
-            ),
-          ),
-
-          // content
-          Positioned.fill(
-            child: HtmlElementView(viewType: viewType),
-          ),
-
-          // Title overlay at top left
-          Positioned(
-            top: 16,
-            left: 16,
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-              decoration: BoxDecoration(
-                color: Colors.black.withValues(alpha: 0.6),
-                borderRadius: BorderRadius.circular(8),
+            // overlay image
+            Positioned.fill(
+              child: Image.asset(
+                'assets/images/overlay.jpg',
+                fit: BoxFit.fill,
               ),
-              child: Text(
-                widget.modelName,
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
+            ),
+
+            // content
+            Positioned.fill(
+              child: HtmlElementView(viewType: viewType),
+            ),
+
+            // Title overlay at top left
+            Positioned(
+              top: 16,
+              left: 16,
+              child: Container(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                decoration: BoxDecoration(
+                  color: Colors.black.withValues(alpha: 0.6),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Text(
+                  widget.modelName,
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

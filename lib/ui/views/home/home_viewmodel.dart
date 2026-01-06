@@ -16,43 +16,43 @@ class HomeViewModel extends BaseViewModel {
   List<CategoryModel> get categories => [
         CategoryModel(
           name: 'Brake',
-          imageUrl: 'images/sample_parts/home-categories-1.png',
+          imageUrl: 'assets/images/sample_parts/home-categories-1.png',
         ),
         CategoryModel(
           name: 'Clutch',
-          imageUrl: 'images/sample_parts/home-categories-2.png',
+          imageUrl: 'assets/images/sample_parts/home-categories-2.png',
         ),
         CategoryModel(
           name: 'Gearshift',
-          imageUrl: 'images/sample_parts/home-categories-3.png',
+          imageUrl: 'assets/images/sample_parts/home-categories-3.png',
         ),
         CategoryModel(
           name: 'Magneto',
-          imageUrl: 'images/sample_parts/home-categories-4.png',
+          imageUrl: 'assets/images/sample_parts/home-categories-4.png',
         ),
         CategoryModel(
           name: 'Oil Pump',
-          imageUrl: 'images/sample_parts/home-categories-5.png',
+          imageUrl: 'assets/images/sample_parts/home-categories-5.png',
         ),
         CategoryModel(
           name: 'Transmission Device',
-          imageUrl: 'images/sample_parts/home-categories-6.png',
+          imageUrl: 'assets/images/sample_parts/home-categories-6.png',
         ),
       ];
   List<MotorcycleBigCard> get featuredMotorcycles => [
         MotorcycleBigCard(
           title: 'BLT150',
-          imagePath: 'images/sample_mcs/home-select-mc-1.png',
+          imagePath: 'assets/images/sample_mcs/home-select-mc-1.png',
           onTap: () => _routerService.navigateToDetailsView(),
         ),
         MotorcycleBigCard(
           title: 'Hero 2024',
-          imagePath: 'images/sample_mcs/home-select-mc-2.png',
+          imagePath: 'assets/images/sample_mcs/home-select-mc-2.png',
           onTap: () => _routerService.navigateToDetailsView(),
         ),
         MotorcycleBigCard(
           title: 'King Pro',
-          imagePath: 'images/sample_mcs/home-select-mc-3.png',
+          imagePath: 'assets/images/sample_mcs/home-select-mc-3.png',
           onTap: () => _routerService.navigateToDetailsView(),
         ),
       ];

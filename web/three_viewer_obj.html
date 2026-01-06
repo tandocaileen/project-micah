@@ -119,6 +119,18 @@
         const controls = new THREE.OrbitControls(camera, renderer.domElement);
         controls.enableDamping = true;
 
+        // Store initial camera position and target for reset
+        const initialCameraPosition = camera.position.clone();
+        const initialControlsTarget = new THREE.Vector3(0, 0, 0);
+
+        // Function to reset camera to initial position
+        function resetCamera() {
+            camera.position.copy(initialCameraPosition);
+            controls.target.copy(initialControlsTarget);
+            controls.update();
+            console.log('three_viewer: Camera reset to initial position');
+        }
+
         // Limit vertical rotation angle (polar angle)
         // 0 = straight down, PI = straight up, PI/2 = horizon
         controls.minPolarAngle = Math.PI * 0.15; // ~27° from top (prevent looking straight down)
@@ -181,6 +193,8 @@
                     disassemblyDistance = distance;
                     updateDisassemblyPositions();
                     console.log('three_viewer: Updated disassembly distance to', distance);
+                } else if (type === 'resetCamera') {
+                    resetCamera();
                 }
             } catch (e) {
                 // Ignore malformed messages
@@ -627,6 +641,14 @@
             camera.aspect = window.innerWidth / window.innerHeight;
             camera.updateProjectionMatrix();
             renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        // Keyboard shortcuts
+        window.addEventListener('keydown', function (event) {
+            // Press 'R' or 'r' to reset camera
+            if (event.key === 'r' || event.key === 'R') {
+                resetCamera();
+            }
         });
     </script>
 </body>
