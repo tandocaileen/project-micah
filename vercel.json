@@ -1,0 +1,29 @@
+{
+    "cleanUrls": true,
+    "trailingSlash": false,
+    "headers": [
+        {
+            "source": "/manifest.json",
+            "headers": [
+                {
+                    "key": "Cache-Control",
+                    "value": "public, max-age=3600"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/manifest+json"
+                }
+            ]
+        }
+    ],
+    "rewrites": [
+        {
+            "source": "/(.*\\.(js|css|map|json|png|svg|jpg|jpeg|gif|webp|ico|wasm|ttf|woff|woff2))",
+            "destination": "/$1"
+        },
+        {
+            "source": "/(.*)",
+            "destination": "/index.html"
+        }
+    ]
+}
