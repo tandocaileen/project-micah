@@ -44,16 +44,19 @@ class HomeViewModel extends BaseViewModel {
           title: 'BLT150',
           imagePath: 'assets/images/sample_mcs/home-select-mc-1.png',
           onTap: () => _routerService.navigateToDetailsView(),
+          isEnabled: true,
         ),
         MotorcycleBigCard(
           title: 'Hero 2024',
           imagePath: 'assets/images/sample_mcs/home-select-mc-2.png',
           onTap: () => _routerService.navigateToDetailsView(),
+          isEnabled: false,
         ),
         MotorcycleBigCard(
           title: 'King Pro',
           imagePath: 'assets/images/sample_mcs/home-select-mc-3.png',
           onTap: () => _routerService.navigateToDetailsView(),
+          isEnabled: false,
         ),
       ];
 }

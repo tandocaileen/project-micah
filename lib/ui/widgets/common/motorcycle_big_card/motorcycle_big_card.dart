@@ -9,12 +9,14 @@ class MotorcycleBigCard extends StackedView<MotorcycleBigCardModel> {
   final String title;
   final String? imagePath;
   final VoidCallback? onTap;
+  final bool isEnabled;
 
   const MotorcycleBigCard({
     super.key,
     this.title = '',
     this.imagePath,
     this.onTap,
+    this.isEnabled = true,
   });
 
   double _heightFor(BuildContext context) {
@@ -40,7 +42,7 @@ class MotorcycleBigCard extends StackedView<MotorcycleBigCardModel> {
       child: Material(
         color: Colors.transparent,
         child: InkWell(
-          onTap: onTap,
+          onTap: isEnabled ? onTap : null,
           child: Stack(
             fit: StackFit.expand,
             children: [
@@ -56,84 +58,90 @@ class MotorcycleBigCard extends StackedView<MotorcycleBigCardModel> {
               ),
 
               // content
-              Padding(
-                padding: const EdgeInsets.all(16),
-                child: Row(
-                  children: [
-                    // title
-                    Expanded(
-                      flex: 4,
-                      child: Align(
-                        alignment: AlignmentDirectional.topStart,
-                        child: Text(
-                          title,
-                          style: Theme.of(context)
-                              .textTheme
-                              .headlineMedium
-                              ?.copyWith(
-                                fontWeight: FontWeight.bold,
-                                color: AppColors.textPrimary,
-                              ),
+              Opacity(
+                opacity: isEnabled ? 1.0 : 0.4,
+                child: Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Row(
+                    children: [
+                      // title
+                      Expanded(
+                        flex: 4,
+                        child: Align(
+                          alignment: AlignmentDirectional.topStart,
+                          child: Text(
+                            title,
+                            style: Theme.of(context)
+                                .textTheme
+                                .headlineMedium
+                                ?.copyWith(
+                                  fontWeight: FontWeight.bold,
+                                  color: AppColors.textPrimary,
+                                ),
+                          ),
                         ),
                       ),
-                    ),
 
-                    // image
-                    Expanded(
-                      flex: 6,
-                      child: Align(
-                        alignment: Alignment.centerRight,
-                        child: imagePath != null
-                            ? (imagePath!.startsWith('http')
-                                ? Image.network(
-                                    imagePath!,
-                                    fit: BoxFit.contain,
-                                    height: height * 0.9,
-                                    loadingBuilder:
-                                        (context, child, loadingProgress) {
-                                      if (loadingProgress == null) return child;
-                                      return SizedBox(
-                                        height: height * 0.9,
-                                        child: const Center(
-                                          child: CircularProgressIndicator(
-                                              strokeWidth: 2),
-                                        ),
-                                      );
-                                    },
-                                    errorBuilder: (context, error, stackTrace) {
-                                      return SizedBox(
-                                        height: height * 0.9,
-                                        child: Center(
-                                          child: Icon(
-                                            Icons.broken_image,
-                                            size: UIHelpers.iconXLarge,
-                                            color: AppColors.textHint,
+                      // image
+                      Expanded(
+                        flex: 6,
+                        child: Align(
+                          alignment: Alignment.centerRight,
+                          child: imagePath != null
+                              ? (imagePath!.startsWith('http')
+                                  ? Image.network(
+                                      imagePath!,
+                                      fit: BoxFit.contain,
+                                      height: height * 0.9,
+                                      loadingBuilder:
+                                          (context, child, loadingProgress) {
+                                        if (loadingProgress == null)
+                                          return child;
+                                        return SizedBox(
+                                          height: height * 0.9,
+                                          child: const Center(
+                                            child: CircularProgressIndicator(
+                                                strokeWidth: 2),
                                           ),
-                                        ),
-                                      );
-                                    },
-                                  )
-                                : Image.asset(
-                                    imagePath!,
-                                    fit: BoxFit.contain,
-                                    height: height * 0.9,
-                                    errorBuilder: (context, error, stackTrace) {
-                                      return SizedBox(
-                                        height: height * 0.9,
-                                        child: Center(
-                                          child: Icon(
-                                            Icons.broken_image,
-                                            size: UIHelpers.iconXLarge,
-                                            color: AppColors.textHint,
+                                        );
+                                      },
+                                      errorBuilder:
+                                          (context, error, stackTrace) {
+                                        return SizedBox(
+                                          height: height * 0.9,
+                                          child: Center(
+                                            child: Icon(
+                                              Icons.broken_image,
+                                              size: UIHelpers.iconXLarge,
+                                              color: AppColors.textHint,
+                                            ),
                                           ),
-                                        ),
-                                      );
-                                    },
-                                  ))
-                            : const SizedBox.shrink(),
+                                        );
+                                      },
+                                    )
+                                  : Image.asset(
+                                      imagePath!,
+                                      fit: BoxFit.contain,
+                                      height: height * 0.9,
+                                      errorBuilder:
+                                          (context, error, stackTrace) {
+                                        return SizedBox(
+                                          height: height * 0.9,
+                                          child: Center(
+                                            child: Icon(
+                                              Icons.broken_image,
+                                              size: UIHelpers.iconXLarge,
+                                              color: AppColors.textHint,
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    ))
+                              : const SizedBox.shrink(),
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ],

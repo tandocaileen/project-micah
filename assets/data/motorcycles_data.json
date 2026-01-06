@@ -2,7 +2,7 @@
     "motorcycles": [
         {
             "name": "BLT150",
-            "imageUrl": "images/sample_mcs/thumbnail-mc1.png",
+            "imageUrl": "assets/images/sample_mcs/thumbnail-mc1.png",
             "has3DModel": true,
             "engineSpecs": [
                 "Cylinder Block & Cylinder Head",
@@ -34,7 +34,7 @@
                 "Right Side Mirror": {
                     "label": "RIGHT SIDE MIRROR",
                     "displayName": "Right Side Mirror",
-                    "imageUrl": "images/sample_parts/show-details-clutch.png",
+                    "imageUrl": "assets/images/sample_parts/show-details-clutch.png",
                     "name": "SIDE MIRROR ASSEMBLY",
                     "sku": "RSM2341982155",
                     "category": "ACCESSORY",
@@ -48,7 +48,7 @@
                 "Left Side Mirror": {
                     "label": "LEFT SIDE MIRROR",
                     "displayName": "Left Side Mirror",
-                    "imageUrl": "images/sample_parts/show-details-clutch.png",
+                    "imageUrl": "assets/images/sample_parts/show-details-clutch.png",
                     "name": "SIDE MIRROR ASSEMBLY",
                     "sku": "LSM2341982156",
                     "category": "ACCESSORY",
@@ -62,7 +62,7 @@
                 "Handle Bar": {
                     "label": "HANDLE BAR",
                     "displayName": "Handle Bar",
-                    "imageUrl": "images/sample_parts/show-details-clutch.png",
+                    "imageUrl": "assets/images/sample_parts/show-details-clutch.png",
                     "name": "STEERING HANDLEBAR",
                     "sku": "HB6541982341",
                     "category": "STEERING",
@@ -76,7 +76,7 @@
                 "Front Frame": {
                     "label": "FRONT FRAME",
                     "displayName": "Front Frame",
-                    "imageUrl": "images/sample_parts/show-details-clutch.png",
+                    "imageUrl": "assets/images/sample_parts/show-details-clutch.png",
                     "name": "MAIN FRAME ASSEMBLY",
                     "sku": "FF9871982567",
                     "category": "FRAME",
@@ -90,7 +90,7 @@
                 "Back Frame": {
                     "label": "BACK FRAME",
                     "displayName": "Back Frame",
-                    "imageUrl": "images/sample_parts/show-details-clutch.png",
+                    "imageUrl": "assets/images/sample_parts/show-details-clutch.png",
                     "name": "REAR FRAME ASSEMBLY",
                     "sku": "BF8761982678",
                     "category": "FRAME",
@@ -104,7 +104,7 @@
                 "Front Wheel": {
                     "label": "FRONT WHEEL",
                     "displayName": "Front Wheel",
-                    "imageUrl": "images/sample_parts/show-details-clutch.png",
+                    "imageUrl": "assets/images/sample_parts/show-details-clutch.png",
                     "name": "FRONT WHEEL ASSEMBLY",
                     "sku": "FW5431982789",
                     "category": "WHEELS",
@@ -118,7 +118,7 @@
                 "Rear Fender": {
                     "label": "REAR FENDER",
                     "displayName": "Rear Fender",
-                    "imageUrl": "images/sample_parts/show-details-clutch.png",
+                    "imageUrl": "assets/images/sample_parts/show-details-clutch.png",
                     "name": "REAR MUDGUARD",
                     "sku": "RF3211982890",
                     "category": "BODY",
@@ -132,7 +132,7 @@
                 "Exhaust Pipe": {
                     "label": "EXHAUST PIPE",
                     "displayName": "09",
-                    "imageUrl": "images/sample_parts/show-details-clutch.png",
+                    "imageUrl": "assets/images/sample_parts/show-details-clutch.png",
                     "name": "EXHAUST SYSTEM",
                     "sku": "EP7651982901",
                     "category": "ENGINE",
@@ -146,7 +146,7 @@
                 "Rear Wheel": {
                     "label": "REAR WHEEL",
                     "displayName": "Rear Wheel",
-                    "imageUrl": "images/sample_parts/show-details-clutch.png",
+                    "imageUrl": "assets/images/sample_parts/show-details-clutch.png",
                     "name": "REAR WHEEL ASSEMBLY",
                     "sku": "RW4321983012",
                     "category": "WHEELS",
@@ -160,7 +160,7 @@
                 "Rear Shock Absorber": {
                     "label": "REAR SHOCK ABSORBER",
                     "displayName": "Rear Shock Absorber",
-                    "imageUrl": "images/sample_parts/show-details-clutch.png",
+                    "imageUrl": "assets/images/sample_parts/show-details-clutch.png",
                     "name": "REAR SUSPENSION UNIT",
                     "sku": "RSA2131983123",
                     "category": "SUSPENSION",
@@ -175,7 +175,7 @@
         },
         {
             "name": "Blink 124",
-            "imageUrl": "images/sample_mcs/thumbnail-mc2.png",
+            "imageUrl": "assets/images/sample_mcs/thumbnail-mc2.png",
             "has3DModel": false,
             "engineSpecs": [
                 "Cylinder Block & Cylinder Head",
@@ -197,7 +197,7 @@
         },
         {
             "name": "Hero",
-            "imageUrl": "images/sample_mcs/thumbnail-mc2.png",
+            "imageUrl": "assets/images/sample_mcs/thumbnail-mc2.png",
             "has3DModel": false,
             "engineSpecs": [
                 "Cylinder Block & Cylinder Head",
@@ -219,7 +219,7 @@
         },
         {
             "name": "King",
-            "imageUrl": "images/sample_mcs/thumbnail-mc3.png",
+            "imageUrl": "assets/images/sample_mcs/thumbnail-mc3.png",
             "has3DModel": false,
             "engineSpecs": [
                 "Cylinder Block & Cylinder Head",
@@ -241,7 +241,7 @@
         },
         {
             "name": "Hero 2",
-            "imageUrl": "images/sample_mcs/thumbnail-mc3.png",
+            "imageUrl": "assets/images/sample_mcs/thumbnail-mc3.png",
             "has3DModel": false,
             "engineSpecs": [],
             "accessoriesSpecs": [],
@@ -249,7 +249,7 @@
         },
         {
             "name": "King 2",
-            "imageUrl": "images/sample_mcs/thumbnail-mc1.png",
+            "imageUrl": "assets/images/sample_mcs/thumbnail-mc1.png",
             "has3DModel": false,
             "engineSpecs": [],
             "accessoriesSpecs": [],
