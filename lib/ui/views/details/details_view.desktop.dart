@@ -160,7 +160,7 @@ class DetailsViewDesktop extends ViewModelWidget<DetailsViewModel> {
                                             !viewModel.isAssembleMode),
                                       ),
                                       if (!viewModel.isAssembleMode) ...[
-                                        UIHelpers.horizontalSpace16,
+                                        UIHelpers.horizontalSpace20,
                                         Text(
                                           'Parts Distance:',
                                           style: Theme.of(context)
@@ -171,21 +171,17 @@ class DetailsViewDesktop extends ViewModelWidget<DetailsViewModel> {
                                                 fontWeight: FontWeight.w500,
                                               ),
                                         ),
-                                        UIHelpers.horizontalSpace8,
-                                        SizedBox(
-                                          width: 150,
-                                          child: Slider(
-                                            value: viewModel.partDistance,
-                                            min: 0.0,
-                                            max: 20.0,
-                                            divisions: 100,
-                                            label: viewModel.partDistance
-                                                .toStringAsFixed(1),
-                                            onChanged: (value) => viewModel
-                                                .updatePartDistance(value),
-                                          ),
+                                        Slider(
+                                          padding: EdgeInsets.all(4),
+                                          value: viewModel.partDistance,
+                                          min: 0.0,
+                                          max: 20.0,
+                                          divisions: 100,
+                                          label: viewModel.partDistance
+                                              .toStringAsFixed(1),
+                                          onChanged: (value) => viewModel
+                                              .updatePartDistance(value),
                                         ),
-                                        UIHelpers.horizontalSpace8,
                                         SizedBox(
                                           width: 30,
                                           child: Text(
@@ -205,19 +201,19 @@ class DetailsViewDesktop extends ViewModelWidget<DetailsViewModel> {
                                       UIHelpers.horizontalSpace24,
                                       const ControlItem(
                                         icon: Icons.mouse,
-                                        label: 'Drag',
+                                        label: 'Left Click +Drag',
                                         action: 'Rotate',
                                       ),
                                       UIHelpers.horizontalSpace12,
                                       const ControlItem(
                                         icon: Icons.zoom_in,
-                                        label: 'Scroll',
+                                        label: 'Mouse Wheel',
                                         action: 'Zoom',
                                       ),
                                       UIHelpers.horizontalSpace12,
                                       const ControlItem(
                                         icon: Icons.refresh,
-                                        label: 'R',
+                                        label: 'R Key',
                                         action: 'Reset',
                                       ),
                                     ],
